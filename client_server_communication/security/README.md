@@ -37,4 +37,32 @@ providers.
 
 ## CORS
 
+CORS headers allow for cross-origin requests but need server side code
+Use header 'Access-Control-Allow-Origin: <origin>' in response header, should be 
+same as 'Referer' header in request
+
+Request may have already been executed by time response is received. Use 
+preflight request.
+
+Use OPTIONS method, only headers are sent. Only certain requests are preflighted
+
 [Preflight requests and CORS](https://developer.mozilla.org/en-US/docs/Web/HTTP/Access_control_CORS#Preflighted_requests)
+
+## Security Exploit CSRF
+
+Request from forms won't be preflighted
+Can't read response if CORS doesn't allow it
+
+Cross-site request forgery (CSRF)
+CSRF token is often secure enough: additional field appended to form that is 
+also stored server-side. Server will check token against stored token, and only 
+execute request if these tokens match
+
+## Security Exploit XSS
+
+JavaScript can be injected into another site and executed in that context
+
+Protect by validating user-input server side
+
+[Cross-site scripting](https://en.wikipedia.org/wiki/Cross-site_scripting)
+
